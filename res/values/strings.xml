@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Entourage</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    
+    
+    <!--  Login title animation  -->
+    
+    <string name="numericE"> E </string>
+    <string name="N"> N </string>
+    <string name="T"> T </string>
+    <string name="U"> U </string>
+    <string name="R"> R </string>
+    <string name="A"> A </string>
+    <string name="G"> G </string>
+    <string name="E"> E </string>
+    
+    <string name="icon_content_description"> Icon Image </string>
+    
+</resources>
