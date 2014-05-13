@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	//Test Animation
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
