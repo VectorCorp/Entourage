@@ -6,15 +6,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:animateLayoutChanges="true"
+    tools:context=".MainActivity"
+    android:id="@+id/container" >
 
     <TextView
         android:id="@+id/numericE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/numericE" 
-        android:layout_marginLeft="10dip"
-        android:textSize="20sp"
+        android:layout_marginLeft="20dip"
+        android:textSize="40sp"
+        android:alpha="0"
        />
     
     
@@ -24,8 +27,9 @@
         android:layout_height="wrap_content"
         android:text="@string/N" 
         android:layout_marginLeft="10dip"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:layout_toRightOf="@id/numericE"
+        android:alpha="0"
         />
     
     <TextView
@@ -34,15 +38,16 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/N"
-        android:textSize="20sp"
-        android:text="@string/T" />
+        android:textSize="40sp"
+        android:text="@string/T" 
+        android:alpha="0"/>
     
        
     <com.vector.entourage.IconImageview
             android:contentDescription="@string/icon_content_description"
             android:id="@+id/o_icon"
-        android:layout_width="20dip"
-        android:layout_height="20dip"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
         android:layout_toRightOf="@id/T"
         android:textSize="20sp"
         android:layout_marginLeft="10dip"
@@ -54,8 +59,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/o_icon"
-        android:textSize="20sp"
-        android:text="@string/U" />
+        android:textSize="40sp"
+        android:text="@string/U"
+        android:alpha="0" />
     
     <TextView
         android:id="@+id/R"
@@ -63,8 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/U"
-        android:textSize="20sp"
-        android:text="@string/R" />
+        android:textSize="40sp"
+        android:text="@string/R"
+        android:alpha="0" />
     
     <TextView
         android:id="@+id/A"
@@ -72,8 +79,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/R"
-        android:textSize="20sp"
-        android:text="@string/A" />
+        android:textSize="40sp"
+        android:text="@string/A"
+        android:alpha="0" />
     
     <TextView
         android:id="@+id/G"
@@ -81,8 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/A"
-        android:textSize="20sp"
-        android:text="@string/G" />
+        android:textSize="40sp"
+        android:text="@string/G"
+        android:alpha="0" />
 
     
     <TextView
@@ -91,9 +100,54 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_toRightOf="@id/G"
+        android:textSize="40sp"
+        android:text="@string/E" 
+        android:alpha="0"/>
+
+
+    <TextView 
+        android:id="@+id/login_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dip"
+        android:layout_marginTop="140dip"
+        android:layout_below="@id/numericE"
         android:textSize="20sp"
-        android:text="@string/E" />
-
-
+        android:text="@string/login_label" />
+    
+    <EditText
+          android:id="@+id/login"
+          android:layout_width="100dip"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/login_label"
+          android:layout_alignLeft="@+id/password"
+          android:layout_alignTop="@+id/login_label"
+          android:layout_alignParentRight="true"
+          android:inputType="textEmailAddress"
+          android:textSize="20sp" />
+    
+     <TextView 
+        android:id="@+id/password_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_marginTop="40dip"
+        android:layout_alignLeft="@id/login_label"
+        android:layout_below="@id/login_label"
+        android:textSize="20sp"
+        android:text="@string/password_label"/>
+     
+      <EditText
+          android:id="@+id/password"
+          android:layout_width="100dip"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@id/password_label"
+          android:layout_alignTop="@+id/password_label"
+          android:layout_marginLeft="30dip"
+          android:layout_toRightOf="@id/password_label"
+          android:inputType="textPassword"
+          android:textSize="20sp"
+          android:layout_alignParentRight="true"
+          android:text="@string/login_password" />
 
 </RelativeLayout>

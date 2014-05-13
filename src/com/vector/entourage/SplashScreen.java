@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 
 public class SplashScreen extends Activity {
-	//Testing Github Pull request
     protected boolean _active = true;
     protected int _splashTime = 5000;
     

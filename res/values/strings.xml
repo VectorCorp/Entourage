@@ -4,10 +4,8 @@
     <string name="app_name">Entourage</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
     
-    
-    <!--  Login title animation  -->
+    <!--  Login title animation.  -->
     
     <string name="numericE"> E </string>
     <string name="N"> N </string>
@@ -20,4 +18,9 @@
     
     <string name="icon_content_description"> Icon Image </string>
     
+    <!--  Login View Strings  -->
+    
+    <string name="login_label"> Username </string>
+    <string name="password_label"> Password </string>
+    <string name="login_password"> Please Enter Password </string>
 </resources>
