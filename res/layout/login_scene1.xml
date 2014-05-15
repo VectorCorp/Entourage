@@ -113,8 +113,7 @@
         android:layout_marginTop="140dip"
         android:layout_below="@id/numericE"
         android:textSize="20sp"
-        android:text="@string/login_label"
-        android:alpha="0" />
+        android:text="@string/login_label" />
     
     <EditText
           android:id="@+id/login"
@@ -125,8 +124,7 @@
           android:layout_alignTop="@+id/login_label"
           android:layout_alignParentRight="true"
           android:inputType="textEmailAddress"
-          android:textSize="20sp" 
-          android:alpha="0"/>
+          android:textSize="20sp" />
     
      <TextView 
         android:id="@+id/password_label"
@@ -137,8 +135,7 @@
         android:layout_alignLeft="@id/login_label"
         android:layout_below="@id/login_label"
         android:textSize="20sp"
-        android:text="@string/password_label"
-        android:alpha="0"/>
+        android:text="@string/password_label"/>
      
       <EditText
           android:id="@+id/password"
@@ -151,7 +148,6 @@
           android:inputType="textPassword"
           android:textSize="20sp"
           android:layout_alignParentRight="true"
-          android:text="@string/login_password" 
-          android:alpha="0"/> 
+          android:text="@string/login_password" />
 
 </RelativeLayout>
