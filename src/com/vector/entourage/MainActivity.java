@@ -4,17 +4,30 @@ import android.os.Bundle;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
+import android.transition.Scene;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	//Test Animation
+	
+	Context context; 
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        context = getApplicationContext(); 
+        
+        ViewGroup container = (ViewGroup) findViewById(R.id.container); 
+        
+        
+        // Views for the individual title characters 
         TextView numericE = (TextView) findViewById(R.id.numericE); 
         TextView N = (TextView) findViewById(R.id.N);
         TextView T = (TextView) findViewById(R.id.T);
@@ -25,6 +38,15 @@ public class MainActivity extends Activity {
         TextView G = (TextView) findViewById(R.id.G);
         TextView E = (TextView) findViewById(R.id.E);
         
+        // Views for the login labels/fields
+        TextView loginLabel = (TextView) findViewById(R.id.login_label); 
+        TextView loginField = (TextView) findViewById(R.id.login);
+        
+        //Views for the password labels/fields
+        TextView passwordLabel = (TextView) findViewById(R.id.password_label); 
+        TextView passwordField = (TextView) findViewById(R.id.password);
+        
+        // Animations for the individual title characters 
         ObjectAnimator neAnimation = ObjectAnimator.ofFloat(numericE, View.ALPHA, 0, 1); 
         ObjectAnimator nAnimation = ObjectAnimator.ofFloat(N, View.ALPHA, 0, 1); 
         ObjectAnimator tAnimation = ObjectAnimator.ofFloat(T, View.ALPHA, 0, 1); 
@@ -34,21 +56,77 @@ public class MainActivity extends Activity {
         ObjectAnimator aAnimation = ObjectAnimator.ofFloat(A, View.ALPHA, 0, 1); 
         ObjectAnimator gAnimation = ObjectAnimator.ofFloat(G, View.ALPHA, 0, 1); 
         ObjectAnimator eAnimation = ObjectAnimator.ofFloat(E, View.ALPHA, 0, 1);
-        
-        AnimatorSet titleSet = new AnimatorSet(); 
-        
-        //titleSet.play(neAnimation).before(nAnimation).before(tAnimation).before(uAnimation).before(rAnimation).before(aAnimation).before(gAnimation).before(eAnimation); 
-        
-        
+
+        //titleSet.play(neAnimation).before(nAnimation).before(tAnimation).before(uAnimation).before(rAnimation).before(aAnimation).before(gAnimation).before(eAnimation);
        // Animator[] animations = new Array(neAnimation, nAnimation, tAnimation, uAnimation, rAnimation, aAnimation, gAnimation, eAnimation); 
         
+        //titleSet.setDuration(500); 
+        //property values holder (x and fade) 
+        //titleSet.start(); 
+        
+        
+        //LOGIN X POSITION 
+        ObjectAnimator loginLabelXAnimation = ObjectAnimator.ofFloat(loginLabel, "x", 400f, 40f); 
+        loginLabelXAnimation.setDuration(600); 
+        ObjectAnimator loginXAnimation = ObjectAnimator.ofFloat(loginField, "x", 400f, 280f);
+        loginXAnimation.setDuration(600); 
+        
+        // LOGIN FADE ANIMATIONS 
+        ObjectAnimator loginFadeAnimation = ObjectAnimator.ofFloat(loginField, "alpha", 0, 1); 
+        ObjectAnimator loginLabelFadeAnimation = ObjectAnimator.ofFloat(loginLabel, "alpha", 0, 1); 
+        
+        
+        //PASSWORD X ANIMATIONS 
+        ObjectAnimator passwordLabelXAnimation = ObjectAnimator.ofFloat(passwordLabel, "x", 400f, 40f); 
+        passwordLabelXAnimation.setDuration(600); 
+        ObjectAnimator passwordXAnimation = ObjectAnimator.ofFloat(passwordField, "x", 400f, 280f);
+        passwordXAnimation.setDuration(600); 
+        
+        //PASSWORD FADE ANIMATIONS
+        
+        ObjectAnimator passwordFadeAnimation = ObjectAnimator.ofFloat(passwordField, "alpha", 0, 1); 
+        ObjectAnimator passwordLabelFadeAnimation = ObjectAnimator.ofFloat(passwordLabel, "alpha", 0, 1); 
+        
+
+       // ObjectAnimator loginFade = ObjectAnimator.ofFloat(loginField, "alpha", 0, 1); 
+       // ObjectAnimator loginFade = ObjectAnimator.ofFloat(loginField, "alpha", 0, 1); 
+        
+        
+        AnimatorSet titleAndFields = new AnimatorSet(); 
+        AnimatorSet loginLabelSet = new AnimatorSet(); 
+        AnimatorSet loginFieldSet = new AnimatorSet();
+        
+        AnimatorSet passwordLabelSet = new AnimatorSet(); 
+        AnimatorSet passwordFieldSet = new AnimatorSet(); 
+        
+        AnimatorSet titleSet = new AnimatorSet();
+        
+        
+       // loginFadeSet.play(loginFade).with(loginLabelFade);
+        loginLabelSet.play(loginLabelXAnimation).with(loginLabelFadeAnimation); 
+        loginFieldSet.play(loginXAnimation).with(loginFadeAnimation); 
         titleSet.playSequentially(neAnimation, nAnimation, tAnimation, uAnimation, rAnimation, aAnimation, gAnimation, eAnimation); 
+        
+        
+        passwordLabelSet.play(passwordLabelXAnimation).with(passwordLabelFadeAnimation); 
+        passwordFieldSet.play(passwordXAnimation).with(passwordFadeAnimation);
+        
+        //for the desired effect it may be necessary to set a duration for each of the title characters 
+        //titleSet.play(neAnimation).with(nAnimation).with(tAnimation).with(uAnimation).with(rAnimation).with(aAnimation).with(gAnimation).with(eAnimation); 
+         
+        titleAndFields.playSequentially(titleSet, loginLabelSet, loginFieldSet, passwordLabelSet, passwordFieldSet);
+        
+        titleAndFields.start(); 
+       
+        
          
         
-        titleSet.setDuration(500); 
-        //property values holder (x and fade) 
         
-        titleSet.start(); 
+        // Only for android 4.4 (can we find a use for this now or in the forseeable future? perhaps in a revision of the app aimed at optimization...)
+        //Scene login_scene1 = Scene.getSceneForLayout(container, R.layout.login_scene1, context); 
+        
+        // TransitionManager transitionManager = new TransitionManager(); 
+       // transitionManager.transitionTo(login_scene1); 
         
         
         
@@ -71,6 +149,11 @@ public class MainActivity extends Activity {
     }
 
 
+    
+    public void addView(View v){
+    	
+    	
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
