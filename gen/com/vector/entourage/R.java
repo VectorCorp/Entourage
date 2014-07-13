@@ -33,9 +33,10 @@ public final class R {
         public static final int R=0x7f080006;
         public static final int T=0x7f080003;
         public static final int U=0x7f080005;
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
         public static final int container=0x7f080000;
         public static final int login=0x7f08000b;
+        public static final int loginButton=0x7f08000e;
         public static final int login_label=0x7f08000a;
         public static final int numericE=0x7f080001;
         public static final int o_icon=0x7f080004;
@@ -62,6 +63,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
         public static final int icon_content_description=0x7f05000b;
+        public static final int login=0x7f05000f;
         /**   Login View Strings  
          */
         public static final int login_label=0x7f05000c;

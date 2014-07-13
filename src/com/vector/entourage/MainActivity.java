@@ -1,5 +1,12 @@
 package com.vector.entourage;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -7,12 +14,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.transition.Scene;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 	//Test Animation
 	
 	Context context; 
@@ -45,6 +55,23 @@ public class MainActivity extends Activity {
         //Views for the password labels/fields
         TextView passwordLabel = (TextView) findViewById(R.id.password_label); 
         TextView passwordField = (TextView) findViewById(R.id.password);
+        
+        //Views for the login button 
+        Button loginButton = (Button) findViewById(R.id.loginButton); 
+        loginButton.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View v) {
+        		URL url = null; 
+				try {
+					url = new URL("http://10.0.0.107:9000/rest/ping");
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		new EntourageAsyncTask().execute(url); 
+        		
+        	}
+        }); 
         
         // Animations for the individual title characters 
         ObjectAnimator neAnimation = ObjectAnimator.ofFloat(numericE, View.ALPHA, 0, 1); 
@@ -150,6 +177,7 @@ public class MainActivity extends Activity {
 
 
     
+    
     public void addView(View v){
     	
     	
@@ -160,5 +188,61 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+
+
+
+	
+	private class EntourageAsyncTask  extends AsyncTask<URL, Void, String> {
+		//Test Animation
+		
+		@Override
+		protected String doInBackground(URL... urls) {
+			// TODO Auto-generated method stub
+			try {
+				return urlRequest(urls[0]); 
+			}catch (IOException e){
+				return "Error. URL may be invalid"; 
+			}
+			
+		} 
+		
+	   @Override
+	   protected void onPostExecute(String result){
+		   Log.d("SERVER RESPONSE", result); 
+		   
+	   }
+	   
+	   private String urlRequest(URL myurl) throws IOException{
+		   
+		   InputStream is = null; 
+		   
+		   int length; 
+		   
+		   try{
+			   HttpURLConnection conn = (HttpURLConnection) myurl.openConnection(); 
+			   conn.setReadTimeout(10000); 
+			   conn.setConnectTimeout(15000); 
+			   conn.setRequestMethod("GET");
+			   conn.setDoInput(true); 
+			   conn.connect(); 
+			   
+			   int response = conn.getResponseCode(); 
+			   Log.d("HTTP RESPONSE", "The response is : " + response); 
+			   
+			   
+		   }finally {
+			   if (is != null){
+				   is.close(); 
+			   }
+		   }
+		   
+		   return ""; 
+	   }
+	   
+
+	    
+	}
     
 }
